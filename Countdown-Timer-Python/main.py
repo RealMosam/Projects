@@ -1,4 +1,6 @@
 import datetime
+import os
+import sys
 import time
 from tkinter import *
 from tkinter import messagebox
@@ -10,9 +12,20 @@ root.geometry("440x300")
 root.resizable(False, False)
 root.title("Countdown Timer")
 
+
+# Merging into executable (Path)
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
+
+
 # bg - Background image & my_github - GitHub logo
-bg = PhotoImage(file="bg.png")
-my_github = PhotoImage(file="my_github.png")
+bg = PhotoImage(file=resource_path("bg.png"))
+my_github = PhotoImage(file=resource_path("my_github.png"))
 
 Label(root, image=bg).place(x=20, y=80)
 root.iconphoto(False, bg)
